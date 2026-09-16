@@ -38,7 +38,7 @@ class Parser{
      * @param ParserInterface|null $parser
      * @return array
      */
-    public function parseDocument($path, ParserInterface $parser = null){
+    public function parseDocument($path, ?ParserInterface $parser = null){
         $text = $this->getPlainText($path);
 
         if(!$parser){
