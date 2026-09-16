@@ -39,6 +39,8 @@ abstract class EgrulNalogBaseParser extends BaseParser
     protected $subSpace2keyWord;
 
     protected $subSpace2groupName;
+	
+	public $type;
 
     // document structure
     protected $text = '';
@@ -235,9 +237,8 @@ abstract class EgrulNalogBaseParser extends BaseParser
         }
 
         $tmpArr = &$results;
-        //$tmpArr = &$this->results;
         $tmpArr = &$tmpArr[$this->currentNamespace->name];
-
+		
         if($this->currentNamespace->subspaces){
             $tmpArr = &$tmpArr[$this->subSpace];
         }
@@ -247,7 +248,7 @@ abstract class EgrulNalogBaseParser extends BaseParser
         }
 
         $key = $this->precessDuplicatedFields($tmpArr,$key);
-
+		
         $tmpArr[$key] = $item;
     }
 
@@ -356,7 +357,6 @@ abstract class EgrulNalogBaseParser extends BaseParser
         foreach ($namespaces as $namespace){
             $keyWord = $namespace->keyword;
             if(mb_strpos($line, $keyWord) !== false){
-
                 $similarity = similar_text($line, $keyWord);
                 if($similarity > $maxSimilarity){
                     $maxSimilarity = $similarity;
@@ -382,6 +382,7 @@ abstract class EgrulNalogBaseParser extends BaseParser
                 $this->subSpace2 += 1;
             }
         }
+	
     }
 
     /**
@@ -390,7 +391,7 @@ abstract class EgrulNalogBaseParser extends BaseParser
      * @param $pointIndex
      */
     protected function debugNamespaceItems($pointIndex){
-        $tmpArr = &$this->debugNamespacesItems;
+		$tmpArr = &$this->debugNamespacesItems;
         $tmpArr = &$tmpArr[$this->currentNamespace->name];
 
         if($this->currentNamespace->subspaces){
@@ -400,8 +401,12 @@ abstract class EgrulNalogBaseParser extends BaseParser
         if($this->currentNamespace->subspaces_2 && ($this->subSpace2 !== self::DEFAULT_SUBSPACE_2)){
             $tmpArr = &$tmpArr[$this->subSpace2groupName][$this->subSpace2];
         }
-
-        $tmpArr[] = $pointIndex;
+		
+		if (!is_array($tmpArr)){
+			$tmpArr = array();
+		}
+		
+		$tmpArr[] = $pointIndex;
     }
 
     /**
@@ -409,7 +414,7 @@ abstract class EgrulNalogBaseParser extends BaseParser
      * @return bool
      */
     protected function checkSubSpace($lineIndex){
-        $line = $this->lines[$lineIndex];
+		$line = rtrim($this->lines[$lineIndex],'	');
         return (ctype_digit($line) && (int)$line < self::MAX_SUBSPACE);
     }
 
