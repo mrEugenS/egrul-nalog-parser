@@ -7,14 +7,33 @@ return [
         'common',
         'Наименование____'
     ),
-    new DocumentNamespace(
+	new DocumentNamespace(
         'address',
-        'Адрес (место нахождения'
+        'Место нахождения и адрес юридического лица'
+    ),
+	new DocumentNamespace(
+        'mail',
+        'Адрес электронной почты'
     ),
     new DocumentNamespace(
         'registration_info',
         'Сведения о регистрации'
     ),
+	new DocumentNamespace(
+        'registration_info_pension_insurance',
+        'Сведения о регистрации в качестве страхователя по обязательному пенсионному'
+    ),
+	
+	new DocumentNamespace(
+        'registration_info_social_insurance',
+        'Сведения о регистрации в качестве страхователя по обязательному социальному'
+    ),
+	new DocumentNamespace(
+        'termination_information',
+        'Сведения о прекращении юридического лица'
+    ),
+	
+	
     new DocumentNamespace(
         'register_taxes',
         'Сведения о регистрирующем органе по месту нахождения юридического лица'
@@ -48,8 +67,8 @@ return [
         'Сведения о лице, имеющем право без доверенности действовать от имени юридического'
     ),
     new DocumentNamespace(
-        'confidant',
-        'Сведения о лице, имеющем право без доверенности действовать от имени юридического'
+        'information_capital',
+        'Сведения об уставном капитале / складочном капитале / уставном фонде / паевом фонде'
     ),
     /*new DocumentNamespace(
         'founders',
@@ -57,7 +76,7 @@ return [
     ),*/
     new DocumentNamespace(
         'founders',
-        'Сведения об учредителях (участниках',
+        'Сведения об участниках / учредителях юридического лица',
         true
     ),
     new DocumentNamespace(
@@ -69,6 +88,23 @@ return [
         'Сведения о дополнительных видах деятельности',
         true
     ),
+	new DocumentNamespace(
+        'assignee_details',
+        'Сведения о правопреемнике'
+    ),
+
+/*
+	new DocumentNamespace(
+        'aaa',
+        'Сведения о свидетельстве, подтверждающем факт внесения записи в ЕГРЮЛ',
+		true
+    ),
+	new DocumentNamespace(
+        'bbb',
+        'Серия, номер и дача выдачи свидетельства'
+    ),
+*/
+	
     new DocumentNamespace(
         'egrul',
         'Сведения о записях, внесенных в Единый государственный реестр юридических лиц',
