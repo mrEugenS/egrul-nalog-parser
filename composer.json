@@ -9,8 +9,8 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "smalot/pdfparser": "^0.11.0",
+        "php": ">=7.1.0",
+        "smalot/pdfparser": "^2.12",
         "ext-mbstring": "*"
     },
     "autoload": {
